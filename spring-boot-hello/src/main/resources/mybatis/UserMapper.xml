@@ -21,7 +21,7 @@
     <result property="streetAddress" column="street_address"/>
     <result property="state" column="state"/>
     <result property="type" column="type"/>
-    <result property="lasLoginState" column="last_login_state"/>
+    <result property="lasLoginState" column="last_login_date"/>
     <result property="addTime" column="add_time"/>
     <result property="updateTime" column="update_time"/>
   </resultMap>

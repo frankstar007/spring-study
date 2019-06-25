@@ -4,6 +4,7 @@ import com.frankstar.spring.entity.User;
 import com.frankstar.spring.service.UserService;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @Desc :
  */
 @RestController
+@MapperScan(basePackages = "com.frankstar.spring.dao")
 public class UserController {
 
 	@Resource
