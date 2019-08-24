@@ -7,14 +7,23 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="spring-boot-actuator" />
         <module name="spring-boot-hello" />
-        <module name="spring-boot-study" />
+        <module name="spring-boot-setting" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.7">
+      <module name="spring-boot-actuator" target="1.8" />
       <module name="spring-boot-hello" target="1.8" />
+      <module name="spring-boot-setting" target="1.8" />
       <module name="spring-boot-study" target="1.8" />
       <module name="spring-study" target="1.8" />
     </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="spring-boot-hello" options="" />
+      <module name="spring-boot-study" options="-parameters" />
+    </option>
   </component>
 </project>
