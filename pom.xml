@@ -10,6 +10,9 @@
     <module>spring-boot-hello</module>
     <module>spring-boot-setting</module>
     <module>spring-boot-actuator</module>
+    <module>spring-boot-admin</module>
+    <module>spring-boot-logback</module>
+    <module>spring-frank-tortoise</module>
   </modules>
   <name>spring-study</name>
   <packaging>pom</packaging>
@@ -38,6 +41,18 @@
         <version>${spring.boot.version}</version>
         <type>pom</type>
         <scope>import</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>de.codecentric</groupId>
+        <artifactId>spring-boot-admin-client</artifactId>
+        <version>2.1.6</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.mybatis.spring.boot</groupId>
+        <artifactId>mybatis-spring-boot-starter</artifactId>
+        <version>2.0.1</version>
       </dependency>
 
       <dependency>

@@ -1,0 +1,33 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.frankstar.spring.boot.action.mapper.UserMapper">
+  <resultMap id="userMap" type="com.frankstar.spring.boot.action.entity.UserEntity">
+    <id property="id" column="id" />
+    <result property="useId" column="user_id" />
+    <result property="password" column="password"/>
+    <result property="avatar" column="avatar"/>
+    <result property="userName" column="user_name"/>
+
+    <result property="address" column="address" />
+    <result property="job" column="job"/>
+    <result property="birthday" column="birthday"/>
+    <result property="cityId" column="city_id"/>
+
+    <result property="cityName" column="city_name" />
+    <result property="lastLoginDate" column="last_login_date"/>
+    <result property="addTime" column="add_time"
+    <result property="updateTime" column="update_time"/>
+  </resultMap>
+
+  <!-- 可以将sql语句独立出来，然后引用 -->
+  <sql id="baseColumn">
+    id, user_id, password, avatar, username, address, job, birthday, city_id, last_login_date, add_time, update_time
+  </sql>
+
+  <!-- 根据id查询用户 -->
+  <select id="loadByUserIds"  resultMap="userMap">
+    SELECT <include refid="selectMap"/>
+    WHERE user_id IN
+  </select>
+
+
+</mapper>
