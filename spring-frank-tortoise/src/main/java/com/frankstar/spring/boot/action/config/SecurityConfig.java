@@ -1,5 +1,6 @@
 package com.frankstar.spring.boot.action.config;
 
+import com.frankstar.spring.boot.action.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -25,8 +26,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
-	@Bean
-	private
+	@Autowired
+	private UserService userService;
+
+
 
 	@Bean
 	public PasswordEncoder passwordEncoder() {
@@ -37,6 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Bean
 	public AuthenticationProvider authenticationProvider() {
 		DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-		authenticationProvider.set
+		authenticationProvider.setUserDetailsService(userService);
+
 	}
 }

@@ -31,7 +31,7 @@ public class UserService extends UserDetailsService {
 	}
 
 	@Override
-	public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-		return null;
+	public UserDto loadUserByUsername(String name) throws UsernameNotFoundException {
+		return userProcessor.loadUserByName(name);
 	}
 }
