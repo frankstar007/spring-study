@@ -12,7 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @Desc :
  */
 @SpringBootApplication
-@MapperScan("com.frankstar.spring.boot.action.mapper")
+@MapperScan(basePackages = {"com.frankstar.spring.boot.action.mapper"})
 public class SpringBootTortoiseApp {
 
 	public static void main(String[] args) {
