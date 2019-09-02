@@ -12,15 +12,15 @@ import java.util.Arrays;
 public enum Role {
 
 	/**管理员**/
-	ADMIN(0, "admin"),
+	ADMIN(1, "admin"),
 
 
 	/**普通**/
-	ORDINARY(1, "ordinary"),
+	ORDINARY(2, "ordinary"),
 
 
 	/**会员**/
-	MEMBER(2, "member");
+	MEMBER(3, "member");
 
 
 	/**

@@ -1,12 +1,9 @@
 package com.frankstar.spring.boot.action.dto;
 
 import com.frankstar.spring.boot.action.enums.Role;
-import com.google.common.collect.Lists;
 import java.io.Serializable;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -62,7 +59,7 @@ public class UserDto implements UserDetails, Serializable{
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		//  需将 List<Authority> 转成 List<SimpleGrantedAuthority>，否则前端拿不到角色列表名称
-		List<SimpleGrantedAuthority> simpleAuthorities = Lists.newArrayList();
+		List<SimpleGrantedAuthority> simpleAuthorities = new ArrayList<>();
 		int roleId = this.getRoleId();
 		Role role = Role.fromRoleId(roleId);
 		if (role == null) return Collections.emptyList();
