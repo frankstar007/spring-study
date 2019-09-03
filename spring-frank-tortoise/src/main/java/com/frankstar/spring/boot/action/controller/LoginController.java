@@ -3,12 +3,11 @@ package com.frankstar.spring.boot.action.controller;
 import com.frankstar.spring.boot.action.dto.UserDto;
 import com.frankstar.spring.boot.action.processor.UserProcessor;
 import javax.annotation.Resource;
-import javax.validation.Valid;
+import javax.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.validation.BindingResult;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -21,8 +20,8 @@ import org.springframework.web.servlet.ModelAndView;
  * @Desc :
  */
 @Slf4j
-@RestController
-@RequestMapping("/")
+@Controller
+@RequestMapping("/user")
 public class LoginController {
 
 	@Resource
@@ -31,20 +30,15 @@ public class LoginController {
 	private static final String LOGIN = "login";
 
 	@GetMapping("/login")
-	public ModelAndView login(ModelAndView modelAndView){
-		modelAndView.setViewName(LOGIN);
-		return modelAndView;
+	public String login() {
+		return "login";
 	}
 
-	@PostMapping("/login")
-	public ModelAndView login(ModelAndView modelAndView, @Valid UserDto userVo, BindingResult bindingResult){
-		if(bindingResult.hasErrors()){
-			modelAndView.addObject("error",bindingResult.getFieldError().getDefaultMessage());
-			modelAndView.setViewName(LOGIN);
-			return modelAndView;
-		}
-		String userName = userVo.getUserName();
-		String password = userVo.getPassword();
+	@RequestMapping("/loginPost")
+	public ModelAndView login(HttpServletRequest request){
+		String userName = request.getParameter("username");
+		String password = request.getParameter("password");
+		ModelAndView modelAndView = new ModelAndView();
 
 		/*用户名不能为空*/
 		if (StringUtils.isEmpty(userName)) {
@@ -64,7 +58,7 @@ public class LoginController {
 		UserDto userDto = userProcessor.loadUserByName(userName);
 		if (userDto == null) {
 			modelAndView.addObject("error","无此用户！");
-			modelAndView.setViewName("login");
+			modelAndView.setViewName("register");
 			return modelAndView;
 		}
 
