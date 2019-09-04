@@ -8,6 +8,15 @@
 </head>
 <body>
 <h2>账号注册</h2>
+
+<div>
+  <!--/*@thymesVar id="error" type=""*/-->
+  <span id="basic-addon0">&nbsp;</span>
+  <span style="font-size: 12px;color: red" th:text="${error}" aria-describedby="basic-addon0"></span>
+  <br />
+</div>
+
+<form id="iform" th:action="@{/user/registerPost}" th:method="post" th:object="${userVo}">
 请输入姓名：<input type="text" id="username" required/><br><br>
 请输入密码：<input type="password" id="password" required/><br><br>
 请确认密码：<input type="password" id="passwordTwo" required/><br><br>
@@ -30,6 +39,8 @@
   <option value="3">会员</option>
 </select><br><br>
 <button onclick="register()">注册</button>
+
+</form>
 </body>
 
 

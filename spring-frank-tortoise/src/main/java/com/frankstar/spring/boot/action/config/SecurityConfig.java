@@ -65,7 +65,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.loginPage("/user/login").failureUrl("/user/register")
 				.and().rememberMe().key(SecurityConstant.SALT)
 				.and().exceptionHandling().accessDeniedPage("/403");
-		http.csrf().ignoringAntMatchers("/h2-console/**");
+		//http.csrf().ignoringAntMatchers("/h2-console/**");
+		http.csrf().disable();
 		http.headers().frameOptions().sameOrigin();
 	}
 	/**

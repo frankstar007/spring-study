@@ -25,6 +25,10 @@ public class UserEntity {
 
 	private String userName;
 
+	private String email;
+
+	private String phone;
+
 	private int age;
 
 	private int sex;

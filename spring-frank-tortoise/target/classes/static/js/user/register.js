@@ -29,26 +29,44 @@ function register() {
     alert("两次密码不一致！");
   }
 
-  $.post("/user/registerPost",{
-    username:username,
-    password:password1,
-    phone:phone,
-    email:email,
-    roleId:roleId,
-    cityName:cityName,
-    address:address,
-    birthday:birthday,
-    sex:sex,
-    job:job,
-  },function (res) {
-    if (res ==true){
-      alert("注册成功");
-      window.location.href ="/user/homepage";
-    } else {
-      alert("注册失败，请检查数据重试");
-    }
-  });
+  var data = {
+    username: username,
+    password: password1,
+    phone: phone,
+    email: email,
+    roleId: roleId,
+    cityName: cityName,
+    address: address,
+    birthday: birthday,
+    sex: sex,
+    job: job
+  }
+  console.log(JSON.stringify(data))
 
+
+  $.ajax(
+      {
+        type: "POST",
+        url: "/user/registerPost",
+        contentType: "application/json;charset-UTF-8",
+       data: JSON.stringify(data),
+        dataType: "json",
+        success: function (data) {
+          alert(data);
+          if (data.genData() > 0) {
+            alert("注册成功");
+            window.location.href = "/user/homepage";
+          } else {
+            alert(data.error);
+            window.location.href = "/user/homepage";
+          }
+        },
+        error:function () {
+          alert("注册失败，请检查数据重试");
+          window.location.href = "/user/register"
+        }
+
+      });
 
 
   function checkEmpty(str) {

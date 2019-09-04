@@ -12,7 +12,9 @@ import java.util.Random;
 public class UserIdUtils {
 
 	public static int generateUserId() {
-		return new Random().nextInt();
+		int userId = new Random().nextInt();
+		userId  = Math.abs(userId);
+		return userId;
 	}
 
 }

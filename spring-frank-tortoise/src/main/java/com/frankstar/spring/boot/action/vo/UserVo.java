@@ -12,13 +12,12 @@ import lombok.Data;
  * @Desc :
  */
 @Data
-@Builder
 public class UserVo {
 
 
 	private int userId;
 
-	private String userName;
+	private String username;
 
 	private int age;
 

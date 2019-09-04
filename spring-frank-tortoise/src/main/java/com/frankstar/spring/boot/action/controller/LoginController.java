@@ -1,15 +1,17 @@
 package com.frankstar.spring.boot.action.controller;
 
+import com.frankstar.spring.boot.action.common.utils.EncryptUtils;
 import com.frankstar.spring.boot.action.dto.UserDto;
 import com.frankstar.spring.boot.action.processor.UserProcessor;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -26,6 +28,9 @@ public class LoginController {
 
 	@Resource
 	private UserProcessor userProcessor;
+
+	@Resource
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	private static final String LOGIN = "login";
 
@@ -62,7 +67,7 @@ public class LoginController {
 			return modelAndView;
 		}
 
-		if (!userDto.getPassword().equals(password)) {
+		if (!bCryptPasswordEncoder.matches(password, userDto.getPassword())) {
 			modelAndView.addObject("error","密码错误！");
 			modelAndView.setViewName("login");
 			return modelAndView;
