@@ -6,6 +6,7 @@
     <result property="password" column="password"/>
     <result property="avatar" column="avatar"/>
     <result property="userName" column="username"/>
+    <result property="roleId" column="role_id"/>
 
     <result property="age" column="age"/>
     <result property="sex" column="sex"/>
@@ -22,7 +23,7 @@
 
   <!-- 可以将sql语句独立出来，然后引用 -->
   <sql id="baseColumn">
-    id, user_id, password, avatar, username,age, sex, address, job, birthday, city_id, city_name, add_time, update_time
+    id, user_id, password, role_id, avatar, username,age, sex, address, job, birthday, city_id, city_name, add_time, update_time
   </sql>
 
   <!-- 根据id查询用户 -->
@@ -50,11 +51,12 @@
 
   <insert id="insertUser" useGeneratedKeys="true" keyProperty="userEntity.id">
     INSERT INTO frankstar_user
-    (user_id, password, avatar, username, age, sex, address, job, birthday, city_id,city_name, add_time)
+    (user_id, password, role_id, avatar, username, age, sex, address, job, birthday, city_id,city_name, add_time)
 		VALUES
 		(
 		#{userEntity.userId},
 		#{userEntity.password},
+		#{userEntity.roleId},
 		#{userEntity.avatar},
 		#{userEntity.userName},
 		#{userEntity.age},
@@ -79,6 +81,9 @@
       </if>
       <if test="userEntity.sex > 0">
         sex = #{userEntity.sex}
+      </if>
+      <if test="userEntity.roleId > 0">
+        role_id = #{userEntity.roleId},
       </if>
       <if test="userEntity.avatar != null">
         avatar = #{userEntity.avatar},
