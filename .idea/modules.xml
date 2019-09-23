@@ -7,8 +7,9 @@
       <module fileurl="file://$PROJECT_DIR$/spring-boot-hello/spring-boot-hello.iml" filepath="$PROJECT_DIR$/spring-boot-hello/spring-boot-hello.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-boot-logback/spring-boot-logback.iml" filepath="$PROJECT_DIR$/spring-boot-logback/spring-boot-logback.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-boot-setting/spring-boot-setting.iml" filepath="$PROJECT_DIR$/spring-boot-setting/spring-boot-setting.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-frank/spring-frank.iml" filepath="$PROJECT_DIR$/spring-frank/spring-frank.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-frank-tortoise/spring-frank-tortoise.iml" filepath="$PROJECT_DIR$/spring-frank-tortoise/spring-frank-tortoise.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/spring-study.iml" filepath="$PROJECT_DIR$/.idea/spring-study.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-study.iml" filepath="$PROJECT_DIR$/spring-study.iml" />
     </modules>
   </component>
 </project>

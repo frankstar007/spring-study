@@ -1,5 +1,6 @@
 package com.frankstar.spring.boot.action.entity;
 
+import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,5 +18,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class RoleEntity {
+
+	private int id;
+
+	private int roleId;
+
+	private String role;
+
+	private Date addTime;
+
+	private Date updateTime;
 
 }

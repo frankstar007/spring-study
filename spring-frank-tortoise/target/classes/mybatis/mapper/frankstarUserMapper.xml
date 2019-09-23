@@ -7,6 +7,12 @@
     <result property="avatar" column="avatar"/>
     <result property="userName" column="username"/>
     <result property="roleId" column="role_id"/>
+<<<<<<< HEAD
+=======
+
+    <result property="email" column="email"/>
+    <result property="phone" column="phone"/>
+>>>>>>> 012098614215d877036c03e0f05c0c8d152f8269
 
     <result property="age" column="age"/>
     <result property="sex" column="sex"/>
@@ -23,7 +29,11 @@
 
   <!-- 可以将sql语句独立出来，然后引用 -->
   <sql id="baseColumn">
+<<<<<<< HEAD
     id, user_id, password, role_id, avatar, username,age, sex, address, job, birthday, city_id, city_name, add_time, update_time
+=======
+    id, user_id, password, role_id,email, phone, avatar, username,age, sex, address, job, birthday, city_id, city_name, add_time, update_time
+>>>>>>> 012098614215d877036c03e0f05c0c8d152f8269
   </sql>
 
   <!-- 根据id查询用户 -->
@@ -51,12 +61,21 @@
 
   <insert id="insertUser" useGeneratedKeys="true" keyProperty="userEntity.id">
     INSERT INTO frankstar_user
+<<<<<<< HEAD
     (user_id, password, role_id, avatar, username, age, sex, address, job, birthday, city_id,city_name, add_time)
+=======
+    (user_id, password, role_id, email, phone, avatar, username, age, sex, address, job, birthday, city_id,city_name, add_time)
+>>>>>>> 012098614215d877036c03e0f05c0c8d152f8269
 		VALUES
 		(
 		#{userEntity.userId},
 		#{userEntity.password},
 		#{userEntity.roleId},
+<<<<<<< HEAD
+=======
+		#{userEntity.email},
+		#{userEntity.phone},
+>>>>>>> 012098614215d877036c03e0f05c0c8d152f8269
 		#{userEntity.avatar},
 		#{userEntity.userName},
 		#{userEntity.age},
@@ -85,6 +104,16 @@
       <if test="userEntity.roleId > 0">
         role_id = #{userEntity.roleId},
       </if>
+<<<<<<< HEAD
+=======
+      <if test="userEntity.email != null">
+        email = #{userEntity.email},
+      </if>
+      <if test="userEntity.phone != null">
+        phone = #{userEntity.phone},
+      </if>
+
+>>>>>>> 012098614215d877036c03e0f05c0c8d152f8269
       <if test="userEntity.avatar != null">
         avatar = #{userEntity.avatar},
       </if>

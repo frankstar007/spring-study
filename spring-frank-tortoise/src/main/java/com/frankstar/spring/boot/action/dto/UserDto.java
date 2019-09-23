@@ -25,7 +25,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserDto implements UserDetails, Serializable{
+public class UserDto implements Serializable{
 
 	private static final long serialVersionUID = -4342330933436022874L;
 
@@ -33,16 +33,22 @@ public class UserDto implements UserDetails, Serializable{
 
 	private int userId;
 
-
-	private String password;
-
-	private String avatar;
-
 	private String userName;
 
 	private int age;
 
 	private int sex;
+
+	private String password;
+
+	private int roleId;
+
+	private String email;
+
+	private String phone;
+
+	private String avatar;
+
 
 	private String address;
 
@@ -54,48 +60,4 @@ public class UserDto implements UserDetails, Serializable{
 
 	private String cityName;
 
-	private int roleId;
-
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		//  需将 List<Authority> 转成 List<SimpleGrantedAuthority>，否则前端拿不到角色列表名称
-		List<SimpleGrantedAuthority> simpleAuthorities = new ArrayList<>();
-		int roleId = this.getRoleId();
-		Role role = Role.fromRoleId(roleId);
-		if (role == null) return Collections.emptyList();
-		SimpleGrantedAuthority simpleGrantedAuthority = new SimpleGrantedAuthority(role.getRole());
-		simpleAuthorities.add(simpleGrantedAuthority);
-		return simpleAuthorities;
-	}
-
-	public void setEncodePassword(String password) {
-		PasswordEncoder encoder = new BCryptPasswordEncoder();
-		String encodePasswd = encoder.encode(password);
-		this.password = encodePasswd;
-	}
-
-	@Override
-	public String getUsername() {
-		return this.getUsername();
-	}
-
-	@Override
-	public boolean isAccountNonExpired() {
-		return true;
-	}
-
-	@Override
-	public boolean isAccountNonLocked() {
-		return true;
-	}
-
-	@Override
-	public boolean isCredentialsNonExpired() {
-		return true;
-	}
-
-	@Override
-	public boolean isEnabled() {
-		return true;
-	}
 }
