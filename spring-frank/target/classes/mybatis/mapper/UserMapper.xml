@@ -1,0 +1,139 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.frankstar.spring.boot.frank.mapper.UserMapper">
+    <resultMap id="userMap" type="com.frankstar.spring.boot.frank.entity.UserEntity">
+        <id property="id" column="id" />
+        <result property="userId" column="user_id" />
+        <result property="password" column="password"/>
+        <result property="avatar" column="avatar"/>
+        <result property="userName" column="username"/>
+        <result property="roleId" column="role_id"/>
+
+        <result property="email" column="email"/>
+        <result property="phone" column="phone"/>
+
+        <result property="age" column="age"/>
+        <result property="sex" column="sex"/>
+
+        <result property="address" column="address" />
+        <result property="job" column="job"/>
+        <result property="birthday" column="birthday"/>
+        <result property="cityId" column="city_id"/>
+
+        <result property="cityName" column="city_name" />
+        <result property="addTime" column="add_time"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+    <!-- 可以将sql语句独立出来，然后引用 -->
+    <sql id="baseColumn">
+    id, user_id, password, role_id,email, phone, avatar, username,age, sex, address, job, birthday, city_id, city_name, add_time, update_time
+  </sql>
+
+    <!-- 根据id查询用户 -->
+    <select id="loadUsers"  resultMap="userMap">
+        SELECT <include refid="baseColumn"/>
+        FROM frankstar_user
+        WHERE user_id IN
+        <foreach collection="userIds" item="userId" index="index" open="(" close=")" separator=",">
+            #{userId}
+        </foreach>
+        AND deleted = 1
+    </select>
+
+    <select id="loadUser" resultMap="userMap">
+        SELECT <include refid="baseColumn"/>
+        FROM frankstar_user
+        WHERE user_id = #{userId}
+        AND deleted = 1
+    </select>
+
+
+    <select id="loadUserByName" resultMap="userMap">
+        SELECT <include refid="baseColumn"/>
+        FROM frankstar_user
+        WHERE username = #{userName}
+        AND deleted = 1
+    </select>
+
+    <insert id="addUser" useGeneratedKeys="true" keyProperty="userEntity.id">
+    INSERT INTO frankstar_user
+    (user_id, password, role_id, email, phone, avatar, username, age, sex, address, job, birthday, city_id,city_name, add_time)
+		VALUES
+		(
+		#{userEntity.userId},
+		#{userEntity.password},
+		#{userEntity.roleId},
+		#{userEntity.email},
+		#{userEntity.phone},
+		#{userEntity.avatar},
+		#{userEntity.userName},
+		#{userEntity.age},
+		#{userEntity.sex},
+		#{userEntity.address},
+		#{userEntity.job},
+		#{userEntity.birthday},
+		#{userEntity.cityId},
+		#{userEntity.cityName},
+		now()
+		)
+  </insert>
+
+    <delete id="deleteUser" parameterType="int">
+        UPDATE frankstart_user SET deleted = 2
+        WHERE user_id = #{userId}
+    </delete>
+
+    <update id="updateUser"  parameterType="com.frankstar.spring.boot.frank.entity.UserEntity">
+        UPDATE frankstar_user
+        <set>
+            <if test="userEntity.userName != null">
+                username = #{userEntity.userName},
+            </if>
+            <if test="userEntity.age > 0">
+                age = #{userEntity.age},
+            </if>
+            <if test="userEntity.sex > 0">
+                sex = #{userEntity.sex}
+            </if>
+            <if test="userEntity.roleId > 0">
+                role_id = #{userEntity.roleId},
+            </if>
+            <if test="userEntity.email != null">
+                email = #{userEntity.email},
+            </if>
+            <if test="userEntity.phone != null">
+                phone = #{userEntity.phone},
+            </if>
+
+            <if test="userEntity.avatar != null">
+                avatar = #{userEntity.avatar},
+            </if>
+            <if test="userEntity.address != null">
+                address = #{userEntity.address},
+            </if>
+            <if test="userEntity.job != null">
+                job = #{userEntity.job},
+            </if>
+
+            <if test="userEntity.password != null">
+                password = #{userEntity.password},
+            </if>
+
+            <if test="userEntity.birthday != null">
+                birthday = #{userEntity.birthday},
+            </if>
+
+            <if test="userEntity.cityId > 0">
+                city_id = #{userEntity.cityId},
+            </if>
+
+            <if test="userEntity.cityName != null">
+                city_name = #{userEntity.cityName}
+            </if>
+        </set>
+
+        WHERE user_id=#{userEntity.userId}
+    </update>
+
+
+</mapper>

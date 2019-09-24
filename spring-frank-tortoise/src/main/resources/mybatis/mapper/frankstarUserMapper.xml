@@ -75,7 +75,7 @@
 		)
   </insert>
 
-  <update id="updateUser"  parameterType="userEntity">
+  <update id="updateUser"  parameterType="com.frankstar.spring.boot.action.entity.UserEntity">
     UPDATE frankstar_user
     <set>
       <if test="userEntity.userName != null">

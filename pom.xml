@@ -13,6 +13,7 @@
     <module>spring-boot-admin</module>
     <module>spring-boot-logback</module>
     <module>spring-frank-tortoise</module>
+    <module>spring-frank</module>
   </modules>
   <name>spring-study</name>
   <packaging>pom</packaging>
