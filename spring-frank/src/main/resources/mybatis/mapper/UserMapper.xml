@@ -83,6 +83,12 @@
         WHERE user_id = #{userId}
     </delete>
 
+
+    <select id="loadAllUsers" resultMap="userMap">
+        SELECT <include refid="baseColumn"/>
+        FROM frankstar_user
+    </select>
+
     <update id="updateUser"  parameterType="com.frankstar.spring.boot.frank.entity.UserEntity">
         UPDATE frankstar_user
         <set>

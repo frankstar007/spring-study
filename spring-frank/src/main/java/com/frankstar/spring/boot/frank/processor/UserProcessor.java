@@ -3,11 +3,15 @@ package com.frankstar.spring.boot.frank.processor;
 import com.frankstar.spring.boot.frank.entity.UserEntity;
 import com.frankstar.spring.boot.frank.mapper.UserMapper;
 import com.frankstar.spring.boot.frank.model.User;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import org.springframework.util.CollectionUtils;
 
 /**
  * @author : frankstar
@@ -35,6 +39,23 @@ public class UserProcessor {
             log.error("", e);
         }
         return null;
+    }
+
+    public List<User> loadAllUsers() {
+        try {
+            List<UserEntity> userEntities = userMapper.loadAllUsers();
+            if (CollectionUtils.isEmpty(userEntities)) return Collections.emptyList();
+            return userEntities.stream().map(
+                userEntity -> {
+                    User user = new User();
+                    BeanUtils.copyProperties(userEntity, user);
+                    return user;
+                }
+            ).collect(Collectors.toList());
+        } catch (Exception e) {
+            log.error("", e);
+        }
+        return Collections.emptyList();
     }
 
 

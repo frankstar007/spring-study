@@ -59,4 +59,9 @@ public interface UserMapper {
      */
     List<UserEntity> loadUsers(@Param("userIds") List<Integer> userIds);
 
+    /**
+     * 获取所有用户
+     * @return
+     */
+    List<UserEntity> loadAllUsers();
 }
